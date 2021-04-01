@@ -80,12 +80,25 @@
             this.ItemPanelPrice = new System.Windows.Forms.Label();
             this.ItemPanelName = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.SetDetailsButton = new System.Windows.Forms.Button();
-            this.RegenerateBackstoryButton = new System.Windows.Forms.Button();
-            this.GetPersonButton = new System.Windows.Forms.Button();
-            this.RegeneratePeronalityButton = new System.Windows.Forms.Button();
-            this.RegenerateAppearanceButton = new System.Windows.Forms.Button();
+            this.NPCPanel = new System.Windows.Forms.Panel();
+            this.ShowNPCNameGen = new System.Windows.Forms.Button();
+            this.PersonNameOutputPanel = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.NPCSettlementTextbox = new System.Windows.Forms.TextBox();
+            this.SettlementCultureDropDown = new System.Windows.Forms.ComboBox();
+            this.SettlementNameButton = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.NPCNameTextbox = new System.Windows.Forms.TextBox();
+            this.NameCultureDropDown = new System.Windows.Forms.ComboBox();
+            this.GetNameButton = new System.Windows.Forms.Button();
+            this.MotivesButton = new System.Windows.Forms.Button();
+            this.PersonOutputPanel = new System.Windows.Forms.Panel();
+            this.Motives = new System.Windows.Forms.TextBox();
+            this.Morality = new System.Windows.Forms.TextBox();
+            this.AbilityScores = new System.Windows.Forms.TextBox();
+            this.BackStory = new System.Windows.Forms.TextBox();
+            this.Peronality = new System.Windows.Forms.TextBox();
+            this.Appearance = new System.Windows.Forms.TextBox();
             this.PersonInputPanel = new System.Windows.Forms.Panel();
             this.RandomizePersonButton = new System.Windows.Forms.Button();
             this.OldCheck = new System.Windows.Forms.CheckBox();
@@ -103,18 +116,13 @@
             this.ForceFacialHairCheck = new System.Windows.Forms.CheckBox();
             this.FemaleCheck = new System.Windows.Forms.CheckBox();
             this.MaleCheck = new System.Windows.Forms.CheckBox();
-            this.PersonOutputPanel = new System.Windows.Forms.Panel();
-            this.BackStory = new System.Windows.Forms.TextBox();
-            this.Peronality = new System.Windows.Forms.TextBox();
-            this.Appearance = new System.Windows.Forms.TextBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.SettlementCultureDropDown = new System.Windows.Forms.ComboBox();
-            this.SettlementNameButton = new System.Windows.Forms.Button();
-            this.SettlementNameLabel = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.GeneratedNames = new System.Windows.Forms.TextBox();
-            this.GetNameButton = new System.Windows.Forms.Button();
-            this.NameCultureDropDown = new System.Windows.Forms.ComboBox();
+            this.MoralityButton = new System.Windows.Forms.Button();
+            this.AbilityScoresButton = new System.Windows.Forms.Button();
+            this.SetDetailsButton = new System.Windows.Forms.Button();
+            this.RegenerateBackstoryButton = new System.Windows.Forms.Button();
+            this.GetPersonButton = new System.Windows.Forms.Button();
+            this.RegeneratePeronalityButton = new System.Windows.Forms.Button();
+            this.RegenerateAppearanceButton = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.NewTavernButton = new System.Windows.Forms.Button();
             this.MenuButton = new System.Windows.Forms.Button();
@@ -206,11 +214,12 @@
             this.ShopPanel.SuspendLayout();
             this.ItemPanel.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.PersonInputPanel.SuspendLayout();
-            this.PersonOutputPanel.SuspendLayout();
+            this.NPCPanel.SuspendLayout();
+            this.PersonNameOutputPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.PersonOutputPanel.SuspendLayout();
+            this.PersonInputPanel.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.TavernMenu.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -811,9 +820,7 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.panel3);
-            this.tabPage2.Controls.Add(this.panel2);
-            this.tabPage2.Controls.Add(this.panel1);
+            this.tabPage2.Controls.Add(this.NPCPanel);
             this.tabPage2.Location = new System.Drawing.Point(4, 44);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -822,74 +829,208 @@
             this.tabPage2.Text = "NPCs";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // panel3
+            // NPCPanel
             // 
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Controls.Add(this.SetDetailsButton);
-            this.panel3.Controls.Add(this.RegenerateBackstoryButton);
-            this.panel3.Controls.Add(this.GetPersonButton);
-            this.panel3.Controls.Add(this.RegeneratePeronalityButton);
-            this.panel3.Controls.Add(this.RegenerateAppearanceButton);
-            this.panel3.Controls.Add(this.PersonInputPanel);
-            this.panel3.Controls.Add(this.PersonOutputPanel);
-            this.panel3.Location = new System.Drawing.Point(535, 6);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(559, 667);
-            this.panel3.TabIndex = 2;
+            this.NPCPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.NPCPanel.Controls.Add(this.PersonInputPanel);
+            this.NPCPanel.Controls.Add(this.PersonNameOutputPanel);
+            this.NPCPanel.Controls.Add(this.ShowNPCNameGen);
+            this.NPCPanel.Controls.Add(this.MotivesButton);
+            this.NPCPanel.Controls.Add(this.PersonOutputPanel);
+            this.NPCPanel.Controls.Add(this.MoralityButton);
+            this.NPCPanel.Controls.Add(this.AbilityScoresButton);
+            this.NPCPanel.Controls.Add(this.SetDetailsButton);
+            this.NPCPanel.Controls.Add(this.RegenerateBackstoryButton);
+            this.NPCPanel.Controls.Add(this.GetPersonButton);
+            this.NPCPanel.Controls.Add(this.RegeneratePeronalityButton);
+            this.NPCPanel.Controls.Add(this.RegenerateAppearanceButton);
+            this.NPCPanel.Location = new System.Drawing.Point(6, 6);
+            this.NPCPanel.Name = "NPCPanel";
+            this.NPCPanel.Size = new System.Drawing.Size(1088, 667);
+            this.NPCPanel.TabIndex = 2;
             // 
-            // SetDetailsButton
+            // ShowNPCNameGen
             // 
-            this.SetDetailsButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SetDetailsButton.Location = new System.Drawing.Point(179, 3);
-            this.SetDetailsButton.Name = "SetDetailsButton";
-            this.SetDetailsButton.Size = new System.Drawing.Size(72, 45);
-            this.SetDetailsButton.TabIndex = 9;
-            this.SetDetailsButton.Text = "Set Details";
-            this.SetDetailsButton.UseVisualStyleBackColor = true;
-            this.SetDetailsButton.Click += new System.EventHandler(this.SetDetailsButton_Click);
+            this.ShowNPCNameGen.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
+            this.ShowNPCNameGen.Location = new System.Drawing.Point(877, 3);
+            this.ShowNPCNameGen.Name = "ShowNPCNameGen";
+            this.ShowNPCNameGen.Size = new System.Drawing.Size(128, 45);
+            this.ShowNPCNameGen.TabIndex = 5;
+            this.ShowNPCNameGen.Text = "Name / Settlement";
+            this.ShowNPCNameGen.UseVisualStyleBackColor = true;
+            this.ShowNPCNameGen.Click += new System.EventHandler(this.ShowNPCNameGen_Click);
             // 
-            // RegenerateBackstoryButton
+            // PersonNameOutputPanel
             // 
-            this.RegenerateBackstoryButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegenerateBackstoryButton.Location = new System.Drawing.Point(453, 4);
-            this.RegenerateBackstoryButton.Name = "RegenerateBackstoryButton";
-            this.RegenerateBackstoryButton.Size = new System.Drawing.Size(100, 43);
-            this.RegenerateBackstoryButton.TabIndex = 7;
-            this.RegenerateBackstoryButton.Text = "New Backstory";
-            this.RegenerateBackstoryButton.UseVisualStyleBackColor = true;
-            this.RegenerateBackstoryButton.Click += new System.EventHandler(this.RegenerateBackstoryButton_Click);
+            this.PersonNameOutputPanel.Controls.Add(this.panel2);
+            this.PersonNameOutputPanel.Controls.Add(this.panel1);
+            this.PersonNameOutputPanel.Location = new System.Drawing.Point(3, 54);
+            this.PersonNameOutputPanel.Name = "PersonNameOutputPanel";
+            this.PersonNameOutputPanel.Size = new System.Drawing.Size(1080, 610);
+            this.PersonNameOutputPanel.TabIndex = 13;
             // 
-            // GetPersonButton
+            // panel2
             // 
-            this.GetPersonButton.Location = new System.Drawing.Point(3, 3);
-            this.GetPersonButton.Name = "GetPersonButton";
-            this.GetPersonButton.Size = new System.Drawing.Size(170, 45);
-            this.GetPersonButton.TabIndex = 0;
-            this.GetPersonButton.Text = "Get Person";
-            this.GetPersonButton.UseVisualStyleBackColor = true;
-            this.GetPersonButton.Click += new System.EventHandler(this.GetPersonButton_Click);
+            this.panel2.Controls.Add(this.NPCSettlementTextbox);
+            this.panel2.Controls.Add(this.SettlementCultureDropDown);
+            this.panel2.Controls.Add(this.SettlementNameButton);
+            this.panel2.Location = new System.Drawing.Point(3, 296);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(553, 310);
+            this.panel2.TabIndex = 4;
             // 
-            // RegeneratePeronalityButton
+            // NPCSettlementTextbox
             // 
-            this.RegeneratePeronalityButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegeneratePeronalityButton.Location = new System.Drawing.Point(357, 3);
-            this.RegeneratePeronalityButton.Name = "RegeneratePeronalityButton";
-            this.RegeneratePeronalityButton.Size = new System.Drawing.Size(90, 45);
-            this.RegeneratePeronalityButton.TabIndex = 6;
-            this.RegeneratePeronalityButton.Text = "New Personality";
-            this.RegeneratePeronalityButton.UseVisualStyleBackColor = true;
-            this.RegeneratePeronalityButton.Click += new System.EventHandler(this.RegeneratePeronalityButton_Click);
+            this.NPCSettlementTextbox.Location = new System.Drawing.Point(3, 54);
+            this.NPCSettlementTextbox.Multiline = true;
+            this.NPCSettlementTextbox.Name = "NPCSettlementTextbox";
+            this.NPCSettlementTextbox.Size = new System.Drawing.Size(544, 253);
+            this.NPCSettlementTextbox.TabIndex = 3;
             // 
-            // RegenerateAppearanceButton
+            // SettlementCultureDropDown
             // 
-            this.RegenerateAppearanceButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RegenerateAppearanceButton.Location = new System.Drawing.Point(257, 3);
-            this.RegenerateAppearanceButton.Name = "RegenerateAppearanceButton";
-            this.RegenerateAppearanceButton.Size = new System.Drawing.Size(94, 45);
-            this.RegenerateAppearanceButton.TabIndex = 3;
-            this.RegenerateAppearanceButton.Text = "New Appearance";
-            this.RegenerateAppearanceButton.UseVisualStyleBackColor = true;
-            this.RegenerateAppearanceButton.Click += new System.EventHandler(this.RegenerateAppearanceButton_Click);
+            this.SettlementCultureDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.SettlementCultureDropDown.FormattingEnabled = true;
+            this.SettlementCultureDropDown.Location = new System.Drawing.Point(283, 5);
+            this.SettlementCultureDropDown.Name = "SettlementCultureDropDown";
+            this.SettlementCultureDropDown.Size = new System.Drawing.Size(267, 43);
+            this.SettlementCultureDropDown.TabIndex = 2;
+            // 
+            // SettlementNameButton
+            // 
+            this.SettlementNameButton.Location = new System.Drawing.Point(3, 3);
+            this.SettlementNameButton.Name = "SettlementNameButton";
+            this.SettlementNameButton.Size = new System.Drawing.Size(274, 45);
+            this.SettlementNameButton.TabIndex = 1;
+            this.SettlementNameButton.Text = "Settlement Name";
+            this.SettlementNameButton.UseVisualStyleBackColor = true;
+            this.SettlementNameButton.Click += new System.EventHandler(this.SettlementNameButton_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.NPCNameTextbox);
+            this.panel1.Controls.Add(this.NameCultureDropDown);
+            this.panel1.Controls.Add(this.GetNameButton);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(553, 287);
+            this.panel1.TabIndex = 0;
+            // 
+            // NPCNameTextbox
+            // 
+            this.NPCNameTextbox.Location = new System.Drawing.Point(3, 54);
+            this.NPCNameTextbox.Multiline = true;
+            this.NPCNameTextbox.Name = "NPCNameTextbox";
+            this.NPCNameTextbox.Size = new System.Drawing.Size(544, 230);
+            this.NPCNameTextbox.TabIndex = 3;
+            // 
+            // NameCultureDropDown
+            // 
+            this.NameCultureDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.NameCultureDropDown.FormattingEnabled = true;
+            this.NameCultureDropDown.Location = new System.Drawing.Point(283, 5);
+            this.NameCultureDropDown.Name = "NameCultureDropDown";
+            this.NameCultureDropDown.Size = new System.Drawing.Size(267, 43);
+            this.NameCultureDropDown.TabIndex = 2;
+            // 
+            // GetNameButton
+            // 
+            this.GetNameButton.Location = new System.Drawing.Point(3, 3);
+            this.GetNameButton.Name = "GetNameButton";
+            this.GetNameButton.Size = new System.Drawing.Size(274, 45);
+            this.GetNameButton.TabIndex = 1;
+            this.GetNameButton.Text = "Get Name";
+            this.GetNameButton.UseVisualStyleBackColor = true;
+            this.GetNameButton.Click += new System.EventHandler(this.GetNameButton_Click);
+            // 
+            // MotivesButton
+            // 
+            this.MotivesButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MotivesButton.Location = new System.Drawing.Point(665, 3);
+            this.MotivesButton.Name = "MotivesButton";
+            this.MotivesButton.Size = new System.Drawing.Size(100, 45);
+            this.MotivesButton.TabIndex = 12;
+            this.MotivesButton.Text = "Motives";
+            this.MotivesButton.UseVisualStyleBackColor = true;
+            // 
+            // PersonOutputPanel
+            // 
+            this.PersonOutputPanel.Controls.Add(this.Motives);
+            this.PersonOutputPanel.Controls.Add(this.Morality);
+            this.PersonOutputPanel.Controls.Add(this.AbilityScores);
+            this.PersonOutputPanel.Controls.Add(this.BackStory);
+            this.PersonOutputPanel.Controls.Add(this.Peronality);
+            this.PersonOutputPanel.Controls.Add(this.Appearance);
+            this.PersonOutputPanel.Location = new System.Drawing.Point(3, 54);
+            this.PersonOutputPanel.Name = "PersonOutputPanel";
+            this.PersonOutputPanel.Size = new System.Drawing.Size(1080, 610);
+            this.PersonOutputPanel.TabIndex = 8;
+            // 
+            // Motives
+            // 
+            this.Motives.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Motives.Location = new System.Drawing.Point(812, 181);
+            this.Motives.Multiline = true;
+            this.Motives.Name = "Motives";
+            this.Motives.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Motives.Size = new System.Drawing.Size(265, 199);
+            this.Motives.TabIndex = 5;
+            this.Motives.Text = "Motives";
+            // 
+            // Morality
+            // 
+            this.Morality.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Morality.Location = new System.Drawing.Point(556, 181);
+            this.Morality.Multiline = true;
+            this.Morality.Name = "Morality";
+            this.Morality.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Morality.Size = new System.Drawing.Size(250, 199);
+            this.Morality.TabIndex = 4;
+            this.Morality.Text = "Morality";
+            // 
+            // AbilityScores
+            // 
+            this.AbilityScores.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AbilityScores.Location = new System.Drawing.Point(556, 3);
+            this.AbilityScores.Multiline = true;
+            this.AbilityScores.Name = "AbilityScores";
+            this.AbilityScores.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.AbilityScores.Size = new System.Drawing.Size(521, 172);
+            this.AbilityScores.TabIndex = 3;
+            this.AbilityScores.Text = "Ability Scores";
+            // 
+            // BackStory
+            // 
+            this.BackStory.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.BackStory.Location = new System.Drawing.Point(556, 386);
+            this.BackStory.Multiline = true;
+            this.BackStory.Name = "BackStory";
+            this.BackStory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.BackStory.Size = new System.Drawing.Size(521, 220);
+            this.BackStory.TabIndex = 2;
+            this.BackStory.Text = "Backstory and secrets";
+            // 
+            // Peronality
+            // 
+            this.Peronality.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.Peronality.Location = new System.Drawing.Point(3, 316);
+            this.Peronality.Multiline = true;
+            this.Peronality.Name = "Peronality";
+            this.Peronality.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Peronality.Size = new System.Drawing.Size(547, 290);
+            this.Peronality.TabIndex = 1;
+            this.Peronality.Text = "Personality and values";
+            // 
+            // Appearance
+            // 
+            this.Appearance.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Appearance.Location = new System.Drawing.Point(3, 3);
+            this.Appearance.Multiline = true;
+            this.Appearance.Name = "Appearance";
+            this.Appearance.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.Appearance.Size = new System.Drawing.Size(547, 307);
+            this.Appearance.TabIndex = 0;
+            this.Appearance.Text = "Appearance";
             // 
             // PersonInputPanel
             // 
@@ -911,7 +1052,7 @@
             this.PersonInputPanel.Controls.Add(this.MaleCheck);
             this.PersonInputPanel.Location = new System.Drawing.Point(3, 54);
             this.PersonInputPanel.Name = "PersonInputPanel";
-            this.PersonInputPanel.Size = new System.Drawing.Size(553, 610);
+            this.PersonInputPanel.Size = new System.Drawing.Size(1080, 610);
             this.PersonInputPanel.TabIndex = 5;
             // 
             // RandomizePersonButton
@@ -1089,132 +1230,79 @@
             this.MaleCheck.UseVisualStyleBackColor = true;
             this.MaleCheck.CheckedChanged += new System.EventHandler(this.MaleCheck_CheckedChanged);
             // 
-            // PersonOutputPanel
+            // MoralityButton
             // 
-            this.PersonOutputPanel.Controls.Add(this.BackStory);
-            this.PersonOutputPanel.Controls.Add(this.Peronality);
-            this.PersonOutputPanel.Controls.Add(this.Appearance);
-            this.PersonOutputPanel.Location = new System.Drawing.Point(3, 54);
-            this.PersonOutputPanel.Name = "PersonOutputPanel";
-            this.PersonOutputPanel.Size = new System.Drawing.Size(553, 610);
-            this.PersonOutputPanel.TabIndex = 8;
+            this.MoralityButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MoralityButton.Location = new System.Drawing.Point(559, 3);
+            this.MoralityButton.Name = "MoralityButton";
+            this.MoralityButton.Size = new System.Drawing.Size(100, 45);
+            this.MoralityButton.TabIndex = 11;
+            this.MoralityButton.Text = "Morality...";
+            this.MoralityButton.UseVisualStyleBackColor = true;
             // 
-            // BackStory
+            // AbilityScoresButton
             // 
-            this.BackStory.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
-            this.BackStory.Location = new System.Drawing.Point(3, 401);
-            this.BackStory.Multiline = true;
-            this.BackStory.Name = "BackStory";
-            this.BackStory.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.BackStory.Size = new System.Drawing.Size(547, 205);
-            this.BackStory.TabIndex = 2;
-            this.BackStory.Text = "Backstory and secrets";
+            this.AbilityScoresButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AbilityScoresButton.Location = new System.Drawing.Point(453, 3);
+            this.AbilityScoresButton.Name = "AbilityScoresButton";
+            this.AbilityScoresButton.Size = new System.Drawing.Size(100, 45);
+            this.AbilityScoresButton.TabIndex = 10;
+            this.AbilityScoresButton.Text = "Ability Scores";
+            this.AbilityScoresButton.UseVisualStyleBackColor = true;
             // 
-            // Peronality
+            // SetDetailsButton
             // 
-            this.Peronality.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
-            this.Peronality.Location = new System.Drawing.Point(3, 198);
-            this.Peronality.Multiline = true;
-            this.Peronality.Name = "Peronality";
-            this.Peronality.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Peronality.Size = new System.Drawing.Size(547, 197);
-            this.Peronality.TabIndex = 1;
-            this.Peronality.Text = "Personality and values";
+            this.SetDetailsButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SetDetailsButton.Location = new System.Drawing.Point(179, 3);
+            this.SetDetailsButton.Name = "SetDetailsButton";
+            this.SetDetailsButton.Size = new System.Drawing.Size(72, 45);
+            this.SetDetailsButton.TabIndex = 9;
+            this.SetDetailsButton.Text = "Set Details";
+            this.SetDetailsButton.UseVisualStyleBackColor = true;
+            this.SetDetailsButton.Click += new System.EventHandler(this.SetDetailsButton_Click);
             // 
-            // Appearance
+            // RegenerateBackstoryButton
             // 
-            this.Appearance.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Appearance.Location = new System.Drawing.Point(3, 3);
-            this.Appearance.Multiline = true;
-            this.Appearance.Name = "Appearance";
-            this.Appearance.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Appearance.Size = new System.Drawing.Size(547, 189);
-            this.Appearance.TabIndex = 0;
-            this.Appearance.Text = "Appearance";
+            this.RegenerateBackstoryButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegenerateBackstoryButton.Location = new System.Drawing.Point(771, 3);
+            this.RegenerateBackstoryButton.Name = "RegenerateBackstoryButton";
+            this.RegenerateBackstoryButton.Size = new System.Drawing.Size(100, 45);
+            this.RegenerateBackstoryButton.TabIndex = 7;
+            this.RegenerateBackstoryButton.Text = "New Backstory";
+            this.RegenerateBackstoryButton.UseVisualStyleBackColor = true;
+            this.RegenerateBackstoryButton.Click += new System.EventHandler(this.RegenerateBackstoryButton_Click);
             // 
-            // panel2
+            // GetPersonButton
             // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.SettlementCultureDropDown);
-            this.panel2.Controls.Add(this.SettlementNameButton);
-            this.panel2.Controls.Add(this.SettlementNameLabel);
-            this.panel2.Location = new System.Drawing.Point(6, 345);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(523, 328);
-            this.panel2.TabIndex = 1;
+            this.GetPersonButton.Location = new System.Drawing.Point(3, 3);
+            this.GetPersonButton.Name = "GetPersonButton";
+            this.GetPersonButton.Size = new System.Drawing.Size(170, 45);
+            this.GetPersonButton.TabIndex = 0;
+            this.GetPersonButton.Text = "Get Person";
+            this.GetPersonButton.UseVisualStyleBackColor = true;
+            this.GetPersonButton.Click += new System.EventHandler(this.GetPersonButton_Click);
             // 
-            // SettlementCultureDropDown
+            // RegeneratePeronalityButton
             // 
-            this.SettlementCultureDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.SettlementCultureDropDown.FormattingEnabled = true;
-            this.SettlementCultureDropDown.Items.AddRange(new object[] {
-            "Choose Culture"});
-            this.SettlementCultureDropDown.Location = new System.Drawing.Point(266, 4);
-            this.SettlementCultureDropDown.Name = "SettlementCultureDropDown";
-            this.SettlementCultureDropDown.Size = new System.Drawing.Size(249, 43);
-            this.SettlementCultureDropDown.Sorted = true;
-            this.SettlementCultureDropDown.TabIndex = 2;
+            this.RegeneratePeronalityButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegeneratePeronalityButton.Location = new System.Drawing.Point(357, 3);
+            this.RegeneratePeronalityButton.Name = "RegeneratePeronalityButton";
+            this.RegeneratePeronalityButton.Size = new System.Drawing.Size(90, 45);
+            this.RegeneratePeronalityButton.TabIndex = 6;
+            this.RegeneratePeronalityButton.Text = "New Personality";
+            this.RegeneratePeronalityButton.UseVisualStyleBackColor = true;
+            this.RegeneratePeronalityButton.Click += new System.EventHandler(this.RegeneratePeronalityButton_Click);
             // 
-            // SettlementNameButton
+            // RegenerateAppearanceButton
             // 
-            this.SettlementNameButton.Location = new System.Drawing.Point(4, 4);
-            this.SettlementNameButton.Name = "SettlementNameButton";
-            this.SettlementNameButton.Size = new System.Drawing.Size(254, 43);
-            this.SettlementNameButton.TabIndex = 1;
-            this.SettlementNameButton.Text = "Settlement Name";
-            this.SettlementNameButton.UseVisualStyleBackColor = true;
-            this.SettlementNameButton.Click += new System.EventHandler(this.SettlementNameButton_Click);
-            // 
-            // SettlementNameLabel
-            // 
-            this.SettlementNameLabel.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.SettlementNameLabel.Font = new System.Drawing.Font("Microsoft YaHei UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SettlementNameLabel.Location = new System.Drawing.Point(56, 156);
-            this.SettlementNameLabel.Name = "SettlementNameLabel";
-            this.SettlementNameLabel.Size = new System.Drawing.Size(407, 47);
-            this.SettlementNameLabel.TabIndex = 0;
-            this.SettlementNameLabel.Text = "Settlement Name";
-            this.SettlementNameLabel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // panel1
-            // 
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.GeneratedNames);
-            this.panel1.Controls.Add(this.GetNameButton);
-            this.panel1.Controls.Add(this.NameCultureDropDown);
-            this.panel1.Location = new System.Drawing.Point(6, 6);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(523, 333);
-            this.panel1.TabIndex = 0;
-            // 
-            // GeneratedNames
-            // 
-            this.GeneratedNames.Font = new System.Drawing.Font("Microsoft YaHei UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.GeneratedNames.Location = new System.Drawing.Point(4, 52);
-            this.GeneratedNames.Multiline = true;
-            this.GeneratedNames.Name = "GeneratedNames";
-            this.GeneratedNames.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.GeneratedNames.Size = new System.Drawing.Size(511, 276);
-            this.GeneratedNames.TabIndex = 4;
-            // 
-            // GetNameButton
-            // 
-            this.GetNameButton.Location = new System.Drawing.Point(3, 3);
-            this.GetNameButton.Name = "GetNameButton";
-            this.GetNameButton.Size = new System.Drawing.Size(255, 44);
-            this.GetNameButton.TabIndex = 1;
-            this.GetNameButton.Text = "Get Name";
-            this.GetNameButton.UseVisualStyleBackColor = true;
-            this.GetNameButton.Click += new System.EventHandler(this.GetNameButton_Click);
-            // 
-            // NameCultureDropDown
-            // 
-            this.NameCultureDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.NameCultureDropDown.FormattingEnabled = true;
-            this.NameCultureDropDown.Location = new System.Drawing.Point(266, 3);
-            this.NameCultureDropDown.Name = "NameCultureDropDown";
-            this.NameCultureDropDown.Size = new System.Drawing.Size(249, 43);
-            this.NameCultureDropDown.TabIndex = 0;
+            this.RegenerateAppearanceButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RegenerateAppearanceButton.Location = new System.Drawing.Point(257, 3);
+            this.RegenerateAppearanceButton.Name = "RegenerateAppearanceButton";
+            this.RegenerateAppearanceButton.Size = new System.Drawing.Size(94, 45);
+            this.RegenerateAppearanceButton.TabIndex = 3;
+            this.RegenerateAppearanceButton.Text = "New Appearance";
+            this.RegenerateAppearanceButton.UseVisualStyleBackColor = true;
+            this.RegenerateAppearanceButton.Click += new System.EventHandler(this.RegenerateAppearanceButton_Click);
             // 
             // tabPage3
             // 
@@ -2116,15 +2204,16 @@
             this.ShopPanel.PerformLayout();
             this.ItemPanel.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.PersonInputPanel.ResumeLayout(false);
-            this.PersonInputPanel.PerformLayout();
-            this.PersonOutputPanel.ResumeLayout(false);
-            this.PersonOutputPanel.PerformLayout();
+            this.NPCPanel.ResumeLayout(false);
+            this.PersonNameOutputPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.PersonOutputPanel.ResumeLayout(false);
+            this.PersonOutputPanel.PerformLayout();
+            this.PersonInputPanel.ResumeLayout(false);
+            this.PersonInputPanel.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.TavernMenu.ResumeLayout(false);
@@ -2184,15 +2273,8 @@
         private System.Windows.Forms.ComboBox MilitaryStrengthOptions;
         private System.Windows.Forms.Label ReligiousPresenceLabel;
         private System.Windows.Forms.ComboBox ReligiousPresenceOptions;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button GetNameButton;
-        private System.Windows.Forms.ComboBox NameCultureDropDown;
-        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel NPCPanel;
         private System.Windows.Forms.Button GetPersonButton;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.ComboBox SettlementCultureDropDown;
-        private System.Windows.Forms.Button SettlementNameButton;
-        private System.Windows.Forms.TextBox SettlementNameLabel;
         private System.Windows.Forms.CheckBox FemaleCheck;
         private System.Windows.Forms.CheckBox MaleCheck;
         private System.Windows.Forms.Panel PersonInputPanel;
@@ -2317,7 +2399,22 @@
         private System.Windows.Forms.Button SaveShop;
         private System.Windows.Forms.TextBox ShopNotes;
         private System.Windows.Forms.Button ReplenishButton;
-        private System.Windows.Forms.TextBox GeneratedNames;
+        private System.Windows.Forms.Button MoralityButton;
+        private System.Windows.Forms.Button AbilityScoresButton;
+        private System.Windows.Forms.TextBox Morality;
+        private System.Windows.Forms.TextBox AbilityScores;
+        private System.Windows.Forms.Button MotivesButton;
+        private System.Windows.Forms.TextBox Motives;
+        private System.Windows.Forms.Panel PersonNameOutputPanel;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.TextBox NPCSettlementTextbox;
+        private System.Windows.Forms.ComboBox SettlementCultureDropDown;
+        private System.Windows.Forms.Button SettlementNameButton;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox NPCNameTextbox;
+        private System.Windows.Forms.ComboBox NameCultureDropDown;
+        private System.Windows.Forms.Button GetNameButton;
+        private System.Windows.Forms.Button ShowNPCNameGen;
     }
 }
 

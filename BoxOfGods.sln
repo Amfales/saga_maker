@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BoxOfGods", "BoxOfGods.csproj", "{549EE642-666E-453A-8F29-8CB85FC586B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{549EE642-666E-453A-8F29-8CB85FC586B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{549EE642-666E-453A-8F29-8CB85FC586B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{549EE642-666E-453A-8F29-8CB85FC586B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{549EE642-666E-453A-8F29-8CB85FC586B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAB284AE-EC49-4B0F-AC0E-D26427F74A74}
+	EndGlobalSection
+EndGlobal
