@@ -677,6 +677,10 @@ namespace BoxOfGods
             RegenerateAppearanceButton_Click(null, null);
             RegeneratePeronalityButton_Click(null, null);
             RegenerateBackstoryButton_Click(null, null);
+            AbilityScoresButton_Click(null, null);
+            MoralityButton_Click(null, null);
+            NPCVirtuesButton_Click(null, null);
+            MotivesButton_Click(null, null);
         }
 
         private void RegenerateAppearanceButton_Click(object sender, EventArgs e)
@@ -2783,6 +2787,145 @@ namespace BoxOfGods
         private void ShowNPCNameGen_Click(object sender, EventArgs e)
         {
             PersonNameOutputPanel.BringToFront();
+        }
+
+        private void AbilityScoresButton_Click(object sender, EventArgs e)
+        {
+            PersonOutputPanel.BringToFront();
+
+            string[] abilities = { "STR", "DEX", "CON", "INT", "WIS", "CHA" };
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Ability Scores");
+            foreach (string ability in abilities)
+            {
+                sb.AppendLine(ability + ": " + GenerateAbilityScore());
+            }
+            AbilityScores.Text = sb.ToString();
+        }
+
+        private int GenerateAbilityScore()
+        {
+            int[] scores = { 0, 0, 0, 0 };
+            for (int i = 0; i < 4; i++)
+            {
+                scores[i] = r.Next(1, 7);
+            }
+            int sum = 0, min = int.MaxValue;
+            for (int i = 0; i < 4; i++)
+            {
+                sum += scores[i];
+                min = Math.Min(min, scores[i]);
+            }
+
+            return sum - min;
+        }
+
+        private void MoralityButton_Click(object sender, EventArgs e)
+        {
+            PersonOutputPanel.BringToFront();
+
+            string[] vices = { "Envy", "Gluttony", "Greed", "Lust", "Pride", "Sloth", "Wrath" };
+            
+            Shuffle<string>(r, vices);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Vices");
+            for(int i = 0; i < vices.Length; i++)
+            {
+                sb.AppendLine($"{i+1}. {vices[i]}");
+            }
+
+            NPCVices.Text = sb.ToString();
+        }
+
+        public static void Shuffle<T>(Random rng, IList<T> list)
+        {
+            int n = list.Count;
+            while (n > 1)
+            {
+                n--;
+                int k = rng.Next(n + 1);
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+        }
+
+        private void NPCVirtuesButton_Click(object sender, EventArgs e)
+        {
+            PersonOutputPanel.BringToFront();
+
+            string[] virtues = { "Charity", "Chastity", "Diligence", "Humility", "Kindness", "Patience", "Temperance" };
+
+            Shuffle<string>(r, virtues);
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Virtues");
+            for (int i = 0; i < virtues.Length; i++)
+            {
+                sb.AppendLine($"{i + 1}. {virtues[i]}");
+            }
+
+            NPCVirtues.Text = sb.ToString();
+        }
+
+        private void MotivesButton_Click(object sender, EventArgs e)
+        {
+            PersonOutputPanel.BringToFront();
+
+
+            string[] template_lines = {
+                "Anxiety: [Anxiety]",
+                "Dread: [Dread]",
+                "Phobia: [Phobia]",
+                "",
+                "Goal: [Goal]",
+                "Ambition: [Ambition]",
+                "Purpose: [Purpose]",
+                "",
+                "Secret: [Secret]",
+            };
+
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("Motives");
+            for(int i = 0; i < template_lines.Length; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        string anxiety = RndString(File.ReadAllLines(workdir + "/Tables/Person/anxiety.txt").ToArray());
+                        sb.AppendLine(template_lines[i].Replace("[Anxiety]", anxiety));
+                        break;
+                    case 1:
+                        string dread = RndString(File.ReadAllLines(workdir + "/Tables/Person/dread.txt").ToArray());
+                        sb.AppendLine(template_lines[i].Replace("[Dread]", dread));
+                        break;
+                    case 2:
+                        string phobia = RndString(File.ReadAllLines(workdir + "/Tables/Person/phobia.txt").ToArray());
+                        sb.AppendLine(template_lines[i].Replace("[Phobia]", phobia));
+                        break;
+                    case 4:
+                        string goal = RndString(File.ReadAllLines(workdir + "/Tables/Person/goal.txt").ToArray());
+                        sb.AppendLine(template_lines[i].Replace("[Goal]", goal));
+                        break;
+                    case 5:
+                        string ambition = RndString(File.ReadAllLines(workdir + "/Tables/Person/ambition.txt").ToArray());
+                        sb.AppendLine(template_lines[i].Replace("[Ambition]", ambition));
+                        break;
+                    case 6:
+                        string purpose = RndString(File.ReadAllLines(workdir + "/Tables/Person/purpose.txt").ToArray());
+                        sb.AppendLine(template_lines[i].Replace("[Purpose]", purpose));
+                        break;
+                    case 8:
+                        string secret = RndString(File.ReadAllLines(workdir + "/Tables/Person/Secret.txt").ToArray());
+                        sb.AppendLine(template_lines[i].Replace("[Secret]", secret));
+                        break;
+                    default:
+                        sb.AppendLine(template_lines[i]);
+                        break;
+                }
+            }
+
+            sb.Length--;
+            Motives.Text = sb.ToString();
         }
     }
 
