@@ -575,7 +575,6 @@ namespace BoxOfGods
         // ==================================================================================
         //                              DM Page
         // ==================================================================================
-
         // ========================== Settlement Name =======================================
         private void SettlementNameButton_Click(object sender, EventArgs e)
         {
@@ -583,7 +582,7 @@ namespace BoxOfGods
 
             if (SettlementCultureDropDown.SelectedIndex == 0)
             {
-                SettlementNameLabel.Text = "Select Culture..";
+                NPCSettlementTextbox.Text = "Select Culture..";
             }
             else
             {
@@ -603,15 +602,15 @@ namespace BoxOfGods
                     {
                         string[] lines_C = File.ReadAllLines(workdir + "/Tables/Cultures/" + culture + "/SettlementNames/C.txt");
                         int n_C = r.Next(0, lines_C.Length);
-                        SettlementNameLabel.Text = lines_A[n_A] + lines_B[n_B] + lines_C[n_C];
+                        NPCSettlementTextbox.Text = lines_A[n_A] + lines_B[n_B] + lines_C[n_C];
                     }
                     else
                     {
-                        SettlementNameLabel.Text = lines_A[n_A] + lines_B[n_B];
+                        NPCSettlementTextbox.Text = lines_A[n_A] + lines_B[n_B];
                     }
                 }
                 else
-                    SettlementNameLabel.Text = "No names yet";
+                    NPCSettlementTextbox.Text = "No names yet";
 
             }
         }
@@ -619,11 +618,11 @@ namespace BoxOfGods
         // ============================ Name =================================================
         private void GetNameButton_Click(object sender, EventArgs e)
         {
-            GeneratedNames.Text = "";
+            NPCNameTextbox.Text = "";
             string culture = NameCultureDropDown.SelectedItem.ToString();
             if (NameCultureDropDown.SelectedIndex == 0)
             {
-                GeneratedNames.Text = "Select Culture..";
+                NPCNameTextbox.Text = "Select Culture..";
             }
             else
             {
@@ -634,7 +633,7 @@ namespace BoxOfGods
 
                 if (File.Exists(generatorPath))
                 {
-                    GeneratedNames.Text =
+                    NPCNameTextbox.Text =
                         SagaScript.Parse(File.ReadAllText(generatorPath), namesPath);
                 }
                 else if(File.Exists(femalePath) && File.Exists(malePath))
@@ -652,23 +651,24 @@ namespace BoxOfGods
                         int n_LastsFemale = r.Next(0, lines_LastName.Length);
                         int n_LastsMale = r.Next(0, lines_LastName.Length);
 
-                        GeneratedNames.Text += lines_NameFemale[n_Females] + " " + lines_LastName[n_LastsFemale];
-                        GeneratedNames.Text += Environment.NewLine + Environment.NewLine;
-                        GeneratedNames.Text += lines_NameMale[n_Females] + " " + lines_LastName[n_LastsMale];                        
+                        NPCNameTextbox.Text += lines_NameFemale[n_Females] + " " + lines_LastName[n_LastsFemale];
+                        NPCNameTextbox.Text += Environment.NewLine + Environment.NewLine;
+                        NPCNameTextbox.Text += lines_NameMale[n_Females] + " " + lines_LastName[n_LastsMale];                        
                     }
                     else
                     {
-                        GeneratedNames.Text = lines_NameFemale[n_Females];
-                        GeneratedNames.Text += Environment.NewLine + Environment.NewLine;
-                        GeneratedNames.Text += lines_NameMale[n_Male];
+                        NPCNameTextbox.Text = lines_NameFemale[n_Females];
+                        NPCNameTextbox.Text += Environment.NewLine + Environment.NewLine;
+                        NPCNameTextbox.Text += lines_NameMale[n_Male];
                     }
                 }
                 else
                 {
-                    GeneratedNames.Text = "No names yet";
+                    NPCNameTextbox.Text = "No names yet";
                 }
             }
         }
+
 
         // ================================= Get Person =====================================
 
@@ -2778,6 +2778,11 @@ namespace BoxOfGods
         private void SetDetailsButton_Click(object sender, EventArgs e)
         {
             PersonInputPanel.BringToFront();
+        }
+
+        private void ShowNPCNameGen_Click(object sender, EventArgs e)
+        {
+            PersonNameOutputPanel.BringToFront();
         }
     }
 
