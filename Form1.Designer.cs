@@ -81,16 +81,16 @@
             this.ItemPanelName = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.NPCPanel = new System.Windows.Forms.Panel();
-            this.NPCVirtuesButton = new System.Windows.Forms.Button();
             this.PersonOutputPanel = new System.Windows.Forms.Panel();
             this.NPCVirtues = new System.Windows.Forms.TextBox();
             this.Motives = new System.Windows.Forms.TextBox();
             this.NPCVices = new System.Windows.Forms.TextBox();
             this.AbilityScores = new System.Windows.Forms.TextBox();
             this.BackStory = new System.Windows.Forms.TextBox();
-            this.Peronality = new System.Windows.Forms.TextBox();
+            this.NPCPersonality = new System.Windows.Forms.RichTextBox();
             this.Appearance = new System.Windows.Forms.TextBox();
             this.PersonInputPanel = new System.Windows.Forms.Panel();
+            this.NPCCultureDropDown = new System.Windows.Forms.ComboBox();
             this.RandomizePersonButton = new System.Windows.Forms.Button();
             this.OldCheck = new System.Windows.Forms.CheckBox();
             this.YoungCheck = new System.Windows.Forms.CheckBox();
@@ -116,6 +116,7 @@
             this.NPCNameTextbox = new System.Windows.Forms.TextBox();
             this.NameCultureDropDown = new System.Windows.Forms.ComboBox();
             this.GetNameButton = new System.Windows.Forms.Button();
+            this.NPCVirtuesButton = new System.Windows.Forms.Button();
             this.ShowNPCNameGen = new System.Windows.Forms.Button();
             this.MotivesButton = new System.Windows.Forms.Button();
             this.NPCVicesButton = new System.Windows.Forms.Button();
@@ -840,10 +841,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.NPCPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.NPCPanel.Controls.Add(this.NPCVirtuesButton);
             this.NPCPanel.Controls.Add(this.PersonOutputPanel);
             this.NPCPanel.Controls.Add(this.PersonInputPanel);
             this.NPCPanel.Controls.Add(this.PersonNameOutputPanel);
+            this.NPCPanel.Controls.Add(this.NPCVirtuesButton);
             this.NPCPanel.Controls.Add(this.ShowNPCNameGen);
             this.NPCPanel.Controls.Add(this.MotivesButton);
             this.NPCPanel.Controls.Add(this.NPCVicesButton);
@@ -858,25 +859,17 @@
             this.NPCPanel.Size = new System.Drawing.Size(1199, 667);
             this.NPCPanel.TabIndex = 2;
             // 
-            // NPCVirtuesButton
-            // 
-            this.NPCVirtuesButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NPCVirtuesButton.Location = new System.Drawing.Point(700, 3);
-            this.NPCVirtuesButton.Name = "NPCVirtuesButton";
-            this.NPCVirtuesButton.Size = new System.Drawing.Size(105, 45);
-            this.NPCVirtuesButton.TabIndex = 14;
-            this.NPCVirtuesButton.Text = "New Virtues";
-            this.NPCVirtuesButton.UseVisualStyleBackColor = true;
-            this.NPCVirtuesButton.Click += new System.EventHandler(this.NPCVirtuesButton_Click);
-            // 
             // PersonOutputPanel
             // 
+            this.PersonOutputPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.PersonOutputPanel.Controls.Add(this.NPCVirtues);
             this.PersonOutputPanel.Controls.Add(this.Motives);
             this.PersonOutputPanel.Controls.Add(this.NPCVices);
             this.PersonOutputPanel.Controls.Add(this.AbilityScores);
             this.PersonOutputPanel.Controls.Add(this.BackStory);
-            this.PersonOutputPanel.Controls.Add(this.Peronality);
+            this.PersonOutputPanel.Controls.Add(this.NPCPersonality);
             this.PersonOutputPanel.Controls.Add(this.Appearance);
             this.PersonOutputPanel.Location = new System.Drawing.Point(3, 54);
             this.PersonOutputPanel.Name = "PersonOutputPanel";
@@ -885,6 +878,9 @@
             // 
             // NPCVirtues
             // 
+            this.NPCVirtues.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.NPCVirtues.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NPCVirtues.Location = new System.Drawing.Point(969, 3);
             this.NPCVirtues.Multiline = true;
@@ -896,6 +892,9 @@
             // 
             // Motives
             // 
+            this.Motives.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Motives.Font = new System.Drawing.Font("Microsoft YaHei UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Motives.Location = new System.Drawing.Point(585, 181);
             this.Motives.Multiline = true;
@@ -929,6 +928,9 @@
             // 
             // BackStory
             // 
+            this.BackStory.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.BackStory.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
             this.BackStory.Location = new System.Drawing.Point(585, 386);
             this.BackStory.Multiline = true;
@@ -938,16 +940,15 @@
             this.BackStory.TabIndex = 2;
             this.BackStory.Text = "Backstory and secrets";
             // 
-            // Peronality
+            // NPCPersonality
             // 
-            this.Peronality.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
-            this.Peronality.Location = new System.Drawing.Point(3, 316);
-            this.Peronality.Multiline = true;
-            this.Peronality.Name = "Peronality";
-            this.Peronality.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.Peronality.Size = new System.Drawing.Size(576, 290);
-            this.Peronality.TabIndex = 1;
-            this.Peronality.Text = "Personality and values";
+            this.NPCPersonality.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F);
+            this.NPCPersonality.Location = new System.Drawing.Point(3, 316);
+            this.NPCPersonality.Name = "NPCPersonality";
+            this.NPCPersonality.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.NPCPersonality.Size = new System.Drawing.Size(576, 290);
+            this.NPCPersonality.TabIndex = 1;
+            this.NPCPersonality.Text = "Personality and values";
             // 
             // Appearance
             // 
@@ -965,6 +966,7 @@
             this.PersonInputPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.PersonInputPanel.Controls.Add(this.NPCCultureDropDown);
             this.PersonInputPanel.Controls.Add(this.RandomizePersonButton);
             this.PersonInputPanel.Controls.Add(this.OldCheck);
             this.PersonInputPanel.Controls.Add(this.YoungCheck);
@@ -985,6 +987,17 @@
             this.PersonInputPanel.Name = "PersonInputPanel";
             this.PersonInputPanel.Size = new System.Drawing.Size(1191, 610);
             this.PersonInputPanel.TabIndex = 5;
+            // 
+            // NPCCultureDropDown
+            // 
+            this.NPCCultureDropDown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.NPCCultureDropDown.FormattingEnabled = true;
+            this.NPCCultureDropDown.Items.AddRange(new object[] {
+            "Random Culture"});
+            this.NPCCultureDropDown.Location = new System.Drawing.Point(286, 314);
+            this.NPCCultureDropDown.Name = "NPCCultureDropDown";
+            this.NPCCultureDropDown.Size = new System.Drawing.Size(239, 43);
+            this.NPCCultureDropDown.TabIndex = 22;
             // 
             // RandomizePersonButton
             // 
@@ -1247,6 +1260,17 @@
             this.GetNameButton.UseVisualStyleBackColor = true;
             this.GetNameButton.Click += new System.EventHandler(this.GetNameButton_Click);
             // 
+            // NPCVirtuesButton
+            // 
+            this.NPCVirtuesButton.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.NPCVirtuesButton.Location = new System.Drawing.Point(700, 3);
+            this.NPCVirtuesButton.Name = "NPCVirtuesButton";
+            this.NPCVirtuesButton.Size = new System.Drawing.Size(105, 45);
+            this.NPCVirtuesButton.TabIndex = 14;
+            this.NPCVirtuesButton.Text = "New Virtues";
+            this.NPCVirtuesButton.UseVisualStyleBackColor = true;
+            this.NPCVirtuesButton.Click += new System.EventHandler(this.NPCVirtuesButton_Click);
+            // 
             // ShowNPCNameGen
             // 
             this.ShowNPCNameGen.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F);
@@ -1427,41 +1451,48 @@
             // 
             // TavernMenu
             // 
+            this.TavernMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TavernMenu.BackgroundImage = global::BoxOfGods.Properties.Resources.parchment_page_scaled;
+            this.TavernMenu.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.TavernMenu.Controls.Add(this.label1);
             this.TavernMenu.Controls.Add(this.Meal1);
             this.TavernMenu.Controls.Add(this.MenuTitle);
             this.TavernMenu.Location = new System.Drawing.Point(599, 3);
             this.TavernMenu.Name = "TavernMenu";
-            this.TavernMenu.Size = new System.Drawing.Size(495, 673);
+            this.TavernMenu.Size = new System.Drawing.Size(609, 673);
             this.TavernMenu.TabIndex = 0;
             // 
             // label1
             // 
+            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Gabriola", 20F);
-            this.label1.Location = new System.Drawing.Point(42, 588);
+            this.label1.Location = new System.Drawing.Point(0, 576);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(410, 52);
+            this.label1.Size = new System.Drawing.Size(609, 97);
             this.label1.TabIndex = 8;
             this.label1.Text = "All prices are by the plate and glass";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // Meal1
             // 
+            this.Meal1.Dock = System.Windows.Forms.DockStyle.Top;
             this.Meal1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Meal1.Location = new System.Drawing.Point(19, 102);
+            this.Meal1.Location = new System.Drawing.Point(0, 66);
             this.Meal1.Name = "Meal1";
-            this.Meal1.Size = new System.Drawing.Size(457, 510);
+            this.Meal1.Size = new System.Drawing.Size(609, 510);
             this.Meal1.TabIndex = 2;
             this.Meal1.Text = "Meal1";
             this.Meal1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // MenuTitle
             // 
+            this.MenuTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.MenuTitle.Font = new System.Drawing.Font("Gabriola", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MenuTitle.Location = new System.Drawing.Point(42, 36);
+            this.MenuTitle.Location = new System.Drawing.Point(0, 0);
             this.MenuTitle.Name = "MenuTitle";
-            this.MenuTitle.Size = new System.Drawing.Size(410, 66);
+            this.MenuTitle.Size = new System.Drawing.Size(609, 66);
             this.MenuTitle.TabIndex = 0;
             this.MenuTitle.Text = "Tavern Name";
             this.MenuTitle.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -2333,7 +2364,7 @@
         private System.Windows.Forms.CheckBox ForceScarCheck;
         private System.Windows.Forms.CheckBox NoFacialHairCheck;
         private System.Windows.Forms.CheckBox ForceFacialHairCheck;
-        private System.Windows.Forms.TextBox Peronality;
+        private System.Windows.Forms.RichTextBox NPCPersonality;
         private System.Windows.Forms.TextBox Appearance;
         private System.Windows.Forms.Button RegenerateAppearanceButton;
         private System.Windows.Forms.TextBox BackStory;
@@ -2458,6 +2489,7 @@
         private System.Windows.Forms.Button ShowNPCNameGen;
         private System.Windows.Forms.TextBox NPCVirtues;
         private System.Windows.Forms.Button NPCVirtuesButton;
+        private System.Windows.Forms.ComboBox NPCCultureDropDown;
     }
 }
 

@@ -669,6 +669,38 @@ namespace BoxOfGods
             }
         }
 
+        private string GenerateName(string culture, bool isMale)
+        {
+            string namesPath = workdir + "/Tables/Cultures/" + culture + "/PeopleNames/";
+            string femalePath = namesPath + "Female_Names.txt";
+            string malePath = namesPath + "Male_Names.txt";
+            string generatorPath = namesPath + "generator.txt";
+
+            if (File.Exists(femalePath) && File.Exists(malePath))
+            {
+                string[] first_names = File.ReadAllLines((isMale) ? malePath : femalePath);
+                string rand_first_name = first_names[r.Next(0, first_names.Length)];
+
+
+                string lastNamesPath = workdir + "/Tables/Cultures/" + culture + "/PeopleNames/Last_Names.txt";
+                if (File.Exists(lastNamesPath))
+                {
+                    string[] last_names = File.ReadAllLines(lastNamesPath);
+                    string rand_last_name = last_names[r.Next(0, last_names.Length)];
+
+                    return rand_first_name + " " + rand_last_name;
+                }
+                else
+                {
+                    return rand_first_name;
+                }
+            }
+            else
+            {
+                return "";
+            }
+        }
+
 
         // ================================= Get Person =====================================
 
@@ -689,15 +721,37 @@ namespace BoxOfGods
 
             string vowels = "aeiou";
 
-            string a = "A [Gender] with [HairColor] [LengthofHair] [StyleofHair] hair, that [HairFall] their [ShapeofFace] and [FaceFeature] face. Their [EyePlacement], [EyeDescription], [EyeColor] eyes, [ActionofEyes] look at you. They sport {a} [FacialHairDescription] [FacialHairType], that smells like [FacialHairSmell]. {A} [ScarDescription] scar starts [ScarPlacement1] and ends [ScarPlacement2], it was acquired by [ScarAccident]. A birthmark resembling a [MarkDescription1] [Birthmark] rests [Placement1]. {A} tattoo of {a} [MarkDescription2] [Tattoo] rests [Placement2]. {A} [MarkDescription3], [TribalColor], [TribalMark] tribal design [Adverb] covers [TribalPlacement]. They are [Height] and [Weight] among the people of their culture. At {1-70} years old, they have {a} [SpeakingVoice] and [PhysicalTrait].";
+            string a = "[Name] is a [Culture] [Age] year(s) old [Gender] [Career].\r\nThey have [LengthofHair] [HairColor] [StyleofHair] hair and [EyePlacement] [EyeColor] eyes.\r\nThey sport {a} [FacialHairDescription] [FacialHairType], that smells like [FacialHairSmell].\r\n{A} [ScarDescription] scar starts [ScarPlacement1] and ends [ScarPlacement2], it was acquired by [ScarAccident].\r\nA birthmark resembling a [MarkDescription1] [Birthmark] rests [Placement1].\r\n{A} tattoo of {a} [MarkDescription2] [Tattoo] rests [Placement2].\r\n{A} [MarkDescription3], [TribalColor], [TribalMark] tribal design [Adverb] covers [TribalPlacement].\r\nThey are [Height] and [Weight] among the people of their culture.\r\nThey also have [PhysicalTrait] and [PersonalityTrait].";
 
             string gender = "";
             if (MaleCheck.Checked)
-                gender = "man";
+                gender = "male";
             else if (FemaleCheck.Checked)
-                gender = "woman";
+                gender = "female";
             else
-                gender = RndString(new string[] { "man", "woman" });
+                gender = RndString(new string[] { "male", "female" });
+
+            string culture = "";
+            if (NPCCultureDropDown.SelectedIndex == 0)
+            {
+                int idx = r.Next(0, NPCCultureDropDown.Items.Count - 1);
+                culture = NPCCultureDropDown.Items[idx + 1].ToString();
+            }
+            else
+            {
+                culture = NPCCultureDropDown.SelectedItem.ToString();
+            }
+
+            string name = GenerateName(culture, MaleCheck.Checked);
+
+            a = a.Replace("[Culture]", culture);
+            a = a.Replace("[Name]", name);
+
+
+
+
+
+
 
             a = a.Replace("[Gender]", gender);
 
@@ -737,7 +791,7 @@ namespace BoxOfGods
                 a = a.Replace("[FacialHairType]", RndString(File.ReadAllLines(workdir + "/Tables/Person/FacialHairType.txt").ToArray()));
             }
             else
-                a = a.Replace("They sport {a} [FacialHairDescription] [FacialHairType], that smells like [FacialHairSmell]. ", "");
+                a = a.Replace("\r\nThey sport {a} [FacialHairDescription] [FacialHairType], that smells like [FacialHairSmell].", "");
 
             a = a.Replace("[HairColor]", RndString(File.ReadAllLines(workdir + "/Tables/Person/HairColor.txt").ToArray()));
             a = a.Replace("[HairFall]", RndString(File.ReadAllLines(workdir + "/Tables/Person/HairFall.txt").ToArray()));
@@ -762,7 +816,7 @@ namespace BoxOfGods
             }
             else
             {
-                a = a.Replace(" {A} [ScarDescription] scar starts [ScarPlacement1] and ends [ScarPlacement2], it was acquired by [ScarAccident].", "");
+                a = a.Replace("\r\n{A} [ScarDescription] scar starts [ScarPlacement1] and ends [ScarPlacement2], it was acquired by [ScarAccident].", "");
             }
 
             if (ForceBirthMarkCheck.Checked || (r.Next(0, 100) < 15 && !NoBirthMarkCheck.Checked))
@@ -775,7 +829,7 @@ namespace BoxOfGods
             }
             else
             {
-                a = a.Replace(" A birthmark resembling a [MarkDescription1] [Birthmark] rests [Placement1].", "");
+                a = a.Replace("\r\nA birthmark resembling a [MarkDescription1] [Birthmark] rests [Placement1].", "");
             }
 
             if (ForceTattooCheck.Checked || (r.Next(0, 100) < 15 && !NoTattooCheck.Checked))
@@ -798,7 +852,7 @@ namespace BoxOfGods
             }
             else
             {
-                a = a.Replace(" {A} tattoo of {a} [MarkDescription2] [Tattoo] rests [Placement2].", "");
+                a = a.Replace("\r\n{A} tattoo of {a} [MarkDescription2] [Tattoo] rests [Placement2].", "");
             }
 
 
@@ -819,7 +873,7 @@ namespace BoxOfGods
             }
             else
             {
-                a = a.Replace(" {A} [MarkDescription3], [TribalColor], [TribalMark] tribal design [Adverb] covers [TribalPlacement].", "");
+                a = a.Replace("\r\n{A} [MarkDescription3], [TribalColor], [TribalMark] tribal design [Adverb] covers [TribalPlacement].", "");
             }
 
             string speakingVoice = RndString(File.ReadAllLines(workdir + "/Tables/Person/SpeakingVoice.txt").ToArray());
@@ -832,6 +886,7 @@ namespace BoxOfGods
             a = a.Replace("[PhysicalTrait]", RndString(File.ReadAllLines(workdir + "/Tables/Person/PhysicalTrait.txt").ToArray()));
 
             SetAge();
+            a = a.Replace("[Age]", age.ToString());
             a = a.Replace("At {1-70} years old", "At " + age + " years old");
 
             Appearance.Text = a;
@@ -863,15 +918,23 @@ namespace BoxOfGods
             }
             else if (MiddleAgeCheck.Checked)
             {
-                age = r.Next(21, 51);
+                age = r.Next(21, 46);
             }
             else if (OldCheck.Checked)
             {
-                age = r.Next(51, 101);
+                age = r.Next(46, 101);
             }
             else
             {
-                age = r.Next(8, 101);
+                double d = r.NextDouble();
+                if (d < (2.0/3))
+                {
+                    age = r.Next(8, 45);
+                }
+                else
+                {
+                    age = r.Next(46, 101);
+                }
             }
         }
 
@@ -885,6 +948,36 @@ namespace BoxOfGods
                         + Environment.NewLine + Environment.NewLine + 
                         "Regardless, most people tend to [ActionofOthers] while [SecretActionofOthers]. At their worst, they display signs of [BehaviorTrait].";
 
+            string b = "Positive Trait: [PositiveTrait1]" + Environment.NewLine +
+                "Neutral Trait: [NeutralTrait1]" + Environment.NewLine +
+                "Negative Trait: [NegativeTrait1]" + Environment.NewLine +
+                "Motivated by: [Motive1]" + Environment.NewLine +
+                "Attracted to people motivated by: [Motive2]" + Environment.NewLine +
+                "Dislike people who are: [PositiveTrait2], [NeutralTrait2], and [NegativeTrait2]" + Environment.NewLine +
+                "Despise people who are motived by: [Motive3]";
+
+
+            foreach (string s in new string[] { "[PositiveTrait1]", "[PositiveTrait2]" })
+            {
+                b = b.Replace(s, RndString(File.ReadAllLines(workdir + "/Tables/Person/PositiveTraits.txt")));
+            }
+
+            foreach (string s in new string[] { "[NeutralTrait1]", "[NeutralTrait2]" })
+            {
+                b = b.Replace(s, RndString(File.ReadAllLines(workdir + "/Tables/Person/NeutralTraits.txt")));
+            }
+
+            foreach (string s in new string[] { "[NegativeTrait1]", "[NegativeTrait2]" })
+            {
+                b = b.Replace(s, RndString(File.ReadAllLines(workdir + "/Tables/Person/NegativeTraits.txt")));
+            }
+
+            foreach (string s in new string[] { "[Motive1]", "[Motive2]", "[Motive3]" })
+            {
+                b = b.Replace(s, RndString(File.ReadAllLines(workdir + "/Tables/Person/Motives.txt")));
+            }
+
+            /*
             a = a.Replace("[Adjective1]", RndString(File.ReadAllLines(workdir + "/Tables/Person/Adjective.txt").ToArray()));
             a = a.Replace("[Adjective2]", RndString(File.ReadAllLines(workdir + "/Tables/Person/Adjective.txt").ToArray()));
             a = a.Replace("[Adjective3]", RndString(File.ReadAllLines(workdir + "/Tables/Person/Adjective.txt").ToArray()));
@@ -904,8 +997,9 @@ namespace BoxOfGods
             a = a.Replace("[ActionofOthers]", RndString(File.ReadAllLines(workdir + "/Tables/Person/ActionofOthers.txt").ToArray()));
             a = a.Replace("[SecretActionofOthers]", RndString(File.ReadAllLines(workdir + "/Tables/Person/SecretActionofOthers.txt").ToArray()));
             a = a.Replace("[BehaviorTrait]", RndString(File.ReadAllLines(workdir + "/Tables/Person/BehaviorTrait.txt").ToArray()));
+            */
 
-            Peronality.Text = a;
+            NPCPersonality.Text = b;
 
         }
 
@@ -919,7 +1013,7 @@ namespace BoxOfGods
                        Environment.NewLine + Environment.NewLine + 
                        "Since then they have [LifeAction], [Transition], [Conclusion]. Currently they are [CurrentAction], while hoping to [Attempt]. In the meantime they work as {a} [Career] where they [CareerDescription]." +
                        Environment.NewLine + Environment.NewLine + 
-                       "Everyone has their secrets, and they are no excpetion, [SecretStrength] [Secret1], and [Secret2]. They will die of old age at {50-95} in the [Season].";
+                       "Manner of death: [DeathManner] at the age of {50-95} on [Season].";
 
             a = a.Replace("[WhereTheyWereBorn]", RndString(File.ReadAllLines(workdir + "/Tables/Person/WhereTheyWereBorn.txt").ToArray()));
             a = a.Replace("[HowTheyLived]", RndString(File.ReadAllLines(workdir + "/Tables/Person/HowTheyLived.txt").ToArray()));
@@ -979,13 +1073,55 @@ namespace BoxOfGods
             a = a.Replace("[SecretStrength]", RndString(File.ReadAllLines(workdir + "/Tables/Person/SecretStrength.txt").ToArray()));
             a = a.Replace("[Secret1]", RndString(File.ReadAllLines(workdir + "/Tables/Person/Secret.txt").ToArray()));
             a = a.Replace("[Secret2]", RndString(File.ReadAllLines(workdir + "/Tables/Person/Secret.txt").ToArray()));
-            a = a.Replace("[Season]", RndString(File.ReadAllLines(workdir + "/Tables/Person/Season.txt").ToArray()));
+
+            string deathManner;
+            if (r.NextDouble() < .05)
+            {
+                deathManner = RndString(File.ReadAllLines(workdir + "/Tables/Person/GruesomeDeaths.txt"));
+            }
+            else
+            {
+                deathManner = RndString(File.ReadAllLines(workdir + "/Tables/Person/EveryDayDeaths.txt"));
+            }
+            a = a.Replace("[DeathManner]", deathManner);
+
+
+            string[] seasons = new string[] {
+                "Valeforzen",
+                "Archazen",
+                "Caerellizen",
+                "Nikiazen",
+                "Seraphzen",
+                "Korezen",
+                "Urythizen",
+                "Tirynzen",
+                "Regozen"
+            };
+            int num_days = 42;
+            string rand_season = RndString(seasons);
+            int rand_day = r.Next(1, num_days + 1);
+            string season = $"{rand_season} {rand_day}";
+            a = a.Replace("[Season]", season);
             int minOldAge = age;
+            int randOldAge = GaussRand(55, 7.0);
+            int oldAge = Math.Max(age, randOldAge);
             if (age < 50)
                 minOldAge = 50;
-            a = a.Replace("{50-95}", r.Next(minOldAge, 101).ToString());
+            a = a.Replace("{50-95}", oldAge.ToString());
 
             BackStory.Text = a;
+        }
+
+        private int GaussRand(int mean, double std)
+        {
+            double u1 = 1.0 - r.NextDouble();
+            double u2 = 1.0 - r.NextDouble();
+            double randStdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) *
+             Math.Sin(2.0 * Math.PI * u2); //random normal(0,1)
+            double randNormal =
+             mean + std * randStdNormal;
+
+            return Convert.ToInt32(randNormal);
         }
 
         string RndString(string[] l)
@@ -2732,6 +2868,7 @@ namespace BoxOfGods
             InitiateCultureDropDown(SongCultureDropDown, cultures);
             InitiateCultureDropDown(RumorCultureDropDown, cultures);
             InitiateCultureDropDown(EncounterCultureDropDown, cultures);
+            InitiateCultureDropDown(NPCCultureDropDown, cultures.Where((s) => (s != "A" && s != "Earthlike" && !s.EndsWith("Completed"))).ToList());
         }
 
         void InitiateCultureDropDown(ComboBox cb, List<string> cultures)
